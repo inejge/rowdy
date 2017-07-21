@@ -298,17 +298,6 @@ impl LdapAuthenticator {
             include_refresh_payload,
         )
     }
-
-    /// Escape search filters according to RFC 4515. Since all strings in Rust are valid unicode,
-    /// invalid unicode escaping is not done
-    pub fn escape_filter(filter: &str) -> String {
-        filter
-            .replace("\\", "\\5c")
-            .replace("*", "\\2a")
-            .replace("(", "\\28")
-            .replace(")", "\\29")
-            .replace("\x00", "\\00")
-    }
 }
 
 impl super::Authenticator<Basic> for LdapAuthenticator {
